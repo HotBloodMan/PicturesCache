@@ -41,7 +41,7 @@ public static String TAG= MainActivity.class.getSimpleName();
         initView();
         initEvent();
         initData();
-        System.out.println("");
+        System.out.println("-----");
     }
 
     private void initView() {
