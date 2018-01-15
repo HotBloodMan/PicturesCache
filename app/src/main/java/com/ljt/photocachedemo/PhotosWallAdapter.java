@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,11 +70,11 @@ public class PhotosWallAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.iv.setTag(url);
         //设置默认图片
         holder.iv.setImageResource(R.drawable.empty_photo);
+        Picasso.with(context).load(url).placeholder(R.mipmap.ic_launcher).tag("PhotoTag").into(holder.iv);
         //加载数据
-        imageLoaders.loadBitmaps(holder.iv,url);
+//        imageLoaders.loadBitmaps(holder.iv,url);
         return convertView;
     }
 

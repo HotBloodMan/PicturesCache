@@ -1,11 +1,16 @@
 package com.ljt.photocachedemo;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.ListView;
+
+import com.squareup.picasso.Picasso;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -13,11 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
 public static String TAG= MainActivity.class.getSimpleName();
     /** 用于展示照片墙的GridView */
-    private GridView mPhotoWallView;
+    private ListView mPhotoWallView;
     private int mImageThumbSize;
     private int mImageThumbSpacing;
 
@@ -46,7 +51,24 @@ public static String TAG= MainActivity.class.getSimpleName();
 
     private void initView() {
         Map<String,String> a=new HashMap<>();
-        mPhotoWallView = (GridView) findViewById(R.id.photo_wall);
+        mPhotoWallView = (ListView) findViewById(R.id.photo_wall);
+        mPhotoWallView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                final Picasso picasso = Picasso.with(MainActivity.this);
+                if (scrollState == SCROLL_STATE_IDLE) {
+                    picasso.resumeTag("PhotoTag");
+                } else {
+                    picasso.pauseTag("PhotoTag");
+                }
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
 
     private void initEvent() {
@@ -122,5 +144,6 @@ public static String TAG= MainActivity.class.getSimpleName();
         // 退出程序时结束所有的下载任务
         mWallAdapter.imageLoaders.cancelAllTasks();
         mWallAdapter.imageLoaders.deleteCache();
+        Picasso.with(this).cancelTag("PhotoTag");
     }
 }
