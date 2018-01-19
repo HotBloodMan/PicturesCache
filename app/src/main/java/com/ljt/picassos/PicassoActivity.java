@@ -132,6 +132,9 @@ public static String TAG= PicassoActivity.class.getSimpleName();
 //                picasso.load(urlPic).into(ivPica);
 
                 Picasso.with(getApplicationContext()).load(urlPic).into(ivPica);
+//                Picasso.with(getApplicationContext()).invalidate();
+//                LruCache lruCache = new LruCache(PicassoActivity.this);
+//                lruCache.clear();
                 Log.d(TAG,TAG+" ----->>>22222222222 ");
             }
         });

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_picasso"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ljt.picassos.PicassoActivity">
+    <Button
+        android:id="@+id/btn_glide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        />
+    <ImageView
+        android:id="@+id/iv_glide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:src="@mipmap/ic_launcher"
+        />
+    <ImageView
+        android:id="@+id/iv_glide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:src="@mipmap/ic_launcher"
+        />
+    <TextView
+        android:id="@+id/tv_glide"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="此处省略10000字"
+        />
+</LinearLayout>
