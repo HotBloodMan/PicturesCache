@@ -114,14 +114,14 @@ public class GlideActivity extends AppCompatActivity {
                *假设你有个自定义的View。由于没有已知的方法在哪里设置图片，
                * Glide并不支持加载图片到定制的View内。然而用ViewTarget会让这个更简单。
                * */
-//                CusGlideView cusGlideView= (CusGlideView) findViewById(R.id.cus_glideview);
-//                ViewTarget<CusGlideView,GlideDrawable> viewTarget=new ViewTarget<CusGlideView, GlideDrawable>(cusGlideView) {
-//                    @Override
-//                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-//                        Drawable current = resource.getCurrent();
-//                    }
-//                };
-//                Glide.with(getApplicationContext()).load("").into(viewTarget);
+                CusGlideView cusGlideView= (CusGlideView) findViewById(R.id.cus_glideview);
+                ViewTarget<CusGlideView,GlideDrawable> viewTarget=new ViewTarget<CusGlideView, GlideDrawable>(cusGlideView) {
+                    @Override
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        Drawable current = resource.getCurrent();
+                    }
+                };
+                Glide.with(getApplicationContext()).load("").into(viewTarget);
             }
         });
     }

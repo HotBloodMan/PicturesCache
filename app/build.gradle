@@ -37,5 +37,7 @@ dependencies {
 
     //对图片进行裁剪、模糊、滤镜等处理
     compile 'jp.wasabeef:glide-transformations:2.0.0'
+
+    compile 'com.google.code.gson:gson:2.2.4'
     testCompile 'junit:junit:4.12'
 }
