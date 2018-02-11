@@ -50,7 +50,9 @@ public class Glide2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //            Picasso.with(mContext).load(datas.get(position).getUrl()).into(((MyViewHolder) holder).iv);
 
             ((MyViewHolder) holder).ivs.setTag(R.id.iv_glide2_item,urls);
-            Glide.with(mContext).load(urls).into(((MyViewHolder)holder).ivs);
+            Glide.with(mContext).load(urls)
+                    .into(((MyViewHolder)holder).ivs);
+
         }else if(holder instanceof MyViewHolder2){
             ((MyViewHolder2) holder).tv.setText(datas.get(position).getPage()+"页");
         }

@@ -26,6 +26,9 @@ import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //参考：https://www.jianshu.com/p/c68a3b9ca07a
@@ -130,8 +133,8 @@ public static String TAG= PicassoActivity.class.getSimpleName();
 //                Picasso.with(PicassoActivity.this).setLoggingEnabled(true);//开启日志打印
 
 //                picasso.load(urlPic).into(ivPica);
-
                 Picasso.with(getApplicationContext()).load(urlPic).into(ivPica);
+//                Picasso.with(getApplicationContext())
 //                Picasso.with(getApplicationContext()).invalidate();
 //                LruCache lruCache = new LruCache(PicassoActivity.this);
 //                lruCache.clear();

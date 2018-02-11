@@ -17,6 +17,7 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.cache.DiskCache;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -24,6 +25,7 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.ljt.photocachedemo.R;
 
 import java.io.File;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import jp.wasabeef.glide.transformations.GrayscaleTransformation;
@@ -68,10 +70,13 @@ public class GlideActivity extends AppCompatActivity {
 //                Glide.with(mContext).load(urlImg)
 //                        .thumbnail(0.6f)
 //                        .into(ivGlide);
-//                DrawableRequestBuilder<Integer> themRequest=Glide.with(mContext).load(R.drawable.fish);
-//                Glide.with(mContext).load(urlImg)
-//                        .thumbnail(themRequest)
+                DrawableRequestBuilder<Integer> themRequest=Glide.with(mContext).load(R.drawable.fish);
+                Glide.with(mContext).load(urlImg)
+                        .thumbnail(themRequest)
+                        .skipMemoryCache(true)
+                        .preload();
 //                        .into(ivGlide);
+//                Glide.with(mContext).pauseRequests();
 //                Glide.with(mContext).load(urlImg)
 ////                        .bitmapTransform(new  RoundedCornersTransformation(mContext,3,0, RoundedCornersTransformation.CornerType.ALL))
 //                        .bitmapTransform(new GrayscaleTransformation(mContext))
@@ -121,7 +126,11 @@ public class GlideActivity extends AppCompatActivity {
                         Drawable current = resource.getCurrent();
                     }
                 };
-                Glide.with(getApplicationContext()).load("").into(viewTarget);
+                Glide.with(getApplicationContext()).load("")
+                        .override(240,240)
+                        .centerCrop()
+                        .into(viewTarget);
+
             }
         });
     }

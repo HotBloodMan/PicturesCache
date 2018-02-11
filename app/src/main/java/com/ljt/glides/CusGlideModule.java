@@ -10,7 +10,10 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
+
+import java.io.InputStream;
 
 /**
  * Created by ${JT.L} on 2018/1/22.
@@ -33,5 +36,6 @@ public class CusGlideModule implements GlideModule {
     @Override
     public void registerComponents(Context context, Glide glide) {
 //       glide.with(context).load("").into(new ImageView(context));
+        glide.register(GlideUrl.class, InputStream.class,new OkHttpGlideUrlLoader.Factory());
     }
 }
