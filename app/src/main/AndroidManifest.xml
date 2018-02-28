@@ -21,6 +21,11 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name="com.ljt.picassos.PicassoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="com.ljt.glides.GlideActivity">
 
@@ -28,11 +33,6 @@
         <activity android:name="com.ljt.picassos2.CustomPicassoActivity">
         </activity>
         <activity android:name="com.ljt.glides2.Glide2Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 

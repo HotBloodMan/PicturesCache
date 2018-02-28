@@ -3,6 +3,7 @@ package com.ljt.picassos;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -22,10 +23,12 @@ import com.squareup.picasso.LruCache;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -64,9 +67,9 @@ public static String TAG= PicassoActivity.class.getSimpleName();
 //        builder.executor(executorService);
 
 
-        final List<Transformation>  mList=new ArrayList<>();
-        mList.add(new GrayTransformation());
-        mList.add(new BlurTransformation(this));
+//        final List<Transformation>  mList=new ArrayList<>();
+//        mList.add(new GrayTransformation());
+//        mList.add(new BlurTransformation(this));
         /*
         * with(Context) 获取一个Picasso单例，参数是一个Context上下文
         load(String) 调用load 方法加载图片
@@ -133,7 +136,28 @@ public static String TAG= PicassoActivity.class.getSimpleName();
 //                Picasso.with(PicassoActivity.this).setLoggingEnabled(true);//开启日志打印
 
 //                picasso.load(urlPic).into(ivPica);
-                Picasso.with(getApplicationContext()).load(urlPic).into(ivPica);
+//                Picasso.with(getApplicationContext()).load(urlPic).into(ivPica);
+                Picasso.with(getApplicationContext())
+                        .load(urlPic)
+                        .resize(240,240)
+                        .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        ivPica.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                        ivPica.setImageResource(R.drawable.qraved_bg_default);
+                    }
+                });
+//                Test test = new Test(PicassoActivity.this);
+//                test.loadBitmap(urlPic,ivPica);
 //                Picasso.with(getApplicationContext())
 //                Picasso.with(getApplicationContext()).invalidate();
 //                LruCache lruCache = new LruCache(PicassoActivity.this);
@@ -183,4 +207,13 @@ public static String TAG= PicassoActivity.class.getSimpleName();
 //        }
 //    }
 
+
+//    public class Test {
+//        private Picasso mPicasso;
+//        private final Map<String,Target> mTargetMap;
+//
+//        Test(Context context){
+//            mPicasso=new Picasso.Builder(context)
+//        }
+//    }
 }
